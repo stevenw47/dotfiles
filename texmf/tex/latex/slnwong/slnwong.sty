@@ -1,0 +1,250 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{slnwong}[2018/01/11 Custom LaTeX package]
+
+\RequirePackage{amsmath, amssymb, amsthm}
+\RequirePackage{mathtools}
+\RequirePackage{enumitem}
+\RequirePackage{array}
+\RequirePackage{bm}
+\RequirePackage{makeidx}
+
+\PassOptionsToPackage{dvipsnames}{xcolor}
+\usepackage{xcolor}
+\RequirePackage{thmtools}
+\RequirePackage[framemethod=TikZ]{mdframed}
+
+\RequirePackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	urlcolor=RubineRed,linkcolor=RoyalBlue,citecolor=ForestGreen,
+	linktoc=all
+}
+
+\RequirePackage{booktabs, multirow}
+
+\RequirePackage{tikz}
+\usetikzlibrary{patterns, decorations.pathmorphing}
+\tikzset{
+	baseline=(current bounding box.north),
+	vertex/.style = {shape=circle, draw, minimum size=4mm, inner sep=0, font=\footnotesize},
+	bvertex/.style = {shape=circle, draw, minimum size=1.5mm, inner sep=0, fill=black},
+	edge/.style = {-, = latex'},
+}
+\tikzset{arc/.style = {->, > = latex}}
+\RequirePackage{multicol}
+
+%%%%%%%%%%%%%%%%
+% environments
+%%%%%%%%%%%%%%%%
+
+% some parts taken/modified from evan.sty "https://github.com/vEnhance/dotfiles/blob/master/texmf/tex/latex/evan/evan.sty"
+\mdfdefinestyle{mdbluebox}{%
+	skipabove=12pt,
+	innerbottommargin=8pt,
+	skipbelow=2pt,
+	nobreak=true,
+	linewidth=1pt,
+	linecolor=blue,
+	backgroundcolor=TealBlue!5,
+}
+\declaretheoremstyle[
+	headfont=\sffamily\bfseries\color{MidnightBlue},
+	mdframed={style=mdbluebox},
+	headpunct={\\[3pt]},
+	postheadspace={0pt}
+]{thmbluebox}
+
+\mdfdefinestyle{mdgreenbox}{%
+	skipabove=12pt,
+	skipbelow=2pt,
+	innerbottommargin=8pt,
+	nobreak=true,
+	linewidth=1pt,
+	linecolor=Green,
+	backgroundcolor=YellowGreen!5,
+}
+\declaretheoremstyle[
+	headfont=\sffamily\bfseries\color{OliveGreen},
+	mdframed={style=mdgreenbox},
+	headpunct={\\[3pt]},
+	postheadspace={0pt}
+]{defngreenbox}
+
+\mdfdefinestyle{mdredbox}{%
+	skipabove=12pt,
+	skipbelow=2pt,
+	innerbottommargin=8pt,
+	nobreak=false,
+	linewidth=0.5pt,
+	linecolor=RawSienna,
+	backgroundcolor=Salmon!5,
+}
+\declaretheoremstyle[
+	headfont=\sffamily\bfseries\color{RawSienna},
+	mdframed={style=mdredbox},
+	headpunct={\\[3pt]},
+	postheadspace={0pt},
+]{exredbox}
+
+\mdfdefinestyle{mdwhitebox}{%
+	skipabove=12pt,
+	skipbelow=2pt,
+	innerbottommargin=8pt,
+	nobreak=true,
+	linewidth=0.5pt,
+	linecolor=lightgray,
+}
+\declaretheoremstyle[
+	headfont=\sffamily\bfseries,
+	mdframed={style=mdwhitebox},
+	headpunct={.\\[3pt]},
+	postheadspace={0pt},
+]{notewhitebox}
+
+
+% use this command to fix spacing issues when starting environment with list/etc
+\newcommand{\listhack}{$\empty$\vspace{-2em}}
+
+\declaretheorem[%
+style=thmbluebox,name=Theorem,numberwithin=section]{theorem}
+\declaretheorem[%
+style=thmbluebox,name=Theorem,numberwithin=section]{thm}
+\declaretheorem[%
+style=thmbluebox,name=Proposition,sharenumber=theorem]{proposition}
+\declaretheorem[%
+style=thmbluebox,name=Proposition,sharenumber=theorem]{prop}
+\declaretheorem[%
+style=thmbluebox,name=Lemma,sharenumber=theorem]{lemma}
+\declaretheorem[%
+style=thmbluebox,name=Lemma,sharenumber=theorem]{lem}
+\declaretheorem[%
+style=thmbluebox,name=Corollary,sharenumber=theorem]{corollary}
+\declaretheorem[%
+style=thmbluebox,name=Corollary,sharenumber=theorem]{col}
+
+\declaretheorem[%
+style=defngreenbox,name=Definition,sibling=theorem]{definition}
+\declaretheorem[%
+style=defngreenbox,name=Definition,sibling=theorem]{defn}
+
+\declaretheorem[%
+style=exredbox,name=Example,numberwithin=section]{example}
+
+\declaretheorem[%
+style=notewhitebox,name=Note,numbered=no]{note}
+
+
+% \newcommand{\vocab}[1]{\textbf{\color{blue} #1}}
+% \newcommand{\vocab}[1]{\underline{#1}}
+\newcommand{\vocab}[1]{\emph{\textbf{\textcolor{WildStrawberry}{#1}}}\index{#1}}
+\makeindex
+
+%%%%%%%%%%%%%%%%
+% general
+%%%%%%%%%%%%%%%%
+
+\newcommand{\abs}[1] {
+	\left\lvert #1 \right\rvert
+}
+
+\newcommand{\FF}{
+	\mathbb{F}
+}
+\newcommand{\NN}{
+	\mathbb{N}
+}
+\newcommand{\ZZ}{
+	\mathbb{Z}
+}
+\newcommand{\RR}{
+	\mathbb{R}
+}
+\newcommand{\QQ}{
+	\mathbb{Q}
+}
+\newcommand{\CC}{
+	\mathbb{C}
+}
+
+\newcommand{\st}{
+	\,\middle\rvert\,
+}
+
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\newcommand{\size}[1]{\left\lvert#1\right\rvert}
+
+\newcommand{\divides}{\bigm|}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\DeclarePairedDelimiter\ang{\langle}{\rangle}
+
+\DeclareMathOperator{\lcm}{lcm}
+
+\DeclareMathOperator{\sgn}{sgn}
+
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Inn}{Inn}
+
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\Orb}{Orb}
+\DeclareMathOperator{\Fix}{Fix}
+\DeclareMathOperator{\Syl}{Syl}
+
+\newcommand{\closedopen}[2]{\ensuremath{[#1,#2)}}
+
+\DeclareMathOperator{\odd}{odd}
+
+%%%%%%%%%%%%%%%%
+% calculus 2
+%%%%%%%%%%%%%%%%
+
+% indefinite integral
+\newcommand{\Int}{
+	\displaystyle{\int}
+}
+
+% definite integral
+\newcommand{\defInt}[3]{
+	\displaystyle{\int_{#1}^{#2} #3}
+}
+
+%\newcommand{\Sum}[3]{
+%	\displaystyle{\sum_{#1}^{#2} #3}
+%}
+\newcommand{\Sum}[3]{
+	\displaystyle{\sum_{#1}^{#2} #3}
+}
+
+%%%%%%%%%%%%%%%%
+% linear algebra
+%%%%%%%%%%%%%%%%
+
+\newcommand{\by}[2]{
+	#1 \times #2
+}
+
+% requires \usepackage{array} for \newcolumntype macro
+\newcolumntype{C}{>{{}}c<{{}}} % for columns with binary operators
+\newcommand\vv{\multicolumn{1}{c}{\vdots}}
+% \syslineq{a}{y}{m}{n}
+\newcommand{\syslineq}[4]{
+	\[
+		\setlength{\arraycolsep}{0pt}
+		\begin{array}{c<{x_1} C c C c<{x_n} C l}
+		#1_{1  1} & + & \cdots & + & #1_{1  #4} & = & #2_1 \\
+		\vv       &   &        &   & \vv        &   & \vdots\\
+		#1_{#3 1} & + & \cdots & + & #1_{#3 #4} & = & #2_{#3} \\
+		\end{array}
+	\]
+}
+
+\DeclareMathOperator{\rank}{rank}
+
+\DeclareMathOperator{\Tr}{Tr}
+
+
+
+\endinput
