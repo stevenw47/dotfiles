@@ -81,11 +81,11 @@ source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='vim'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -108,6 +108,8 @@ PATH="$PATH:/mnt/c/Program Files/SumatraPDF"
 # for Windows programs
 PATH="$PATH:/mnt/c/Windows/System32" # notepad, clip
 PATH="$PATH:/mnt/c/Windows" # explorer
+PATH="$PATH:/mnt/c/Windows/System32/WindowsPowerShell/v1.0" # powershell
+PATH="$PATH:/mnt/c/Program Files/Docker/Docker/resources/bin" # docker
 
 export PATH
 
@@ -125,3 +127,15 @@ alias uw="ssh slnwong@linux.student.cs.uwaterloo.ca"
 
 # for dotfiles https://www.atlassian.com/git/tutorials/dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# cs484
+alias cs484="source /mnt/c/Users/Steven/Desktop/cs484-env/bin/activate && cd /mnt/c/Users/Steven/Dropbox/University\ of\ Waterloo/4A/CS\ 484/Assignments"
+
+# cs489
+alias cs489="source /mnt/c/Users/Steven/Desktop/cs489-env/bin/activate && cd /mnt/c/Users/Steven/Dropbox/University\ of\ Waterloo/4A/CS\ 489/Assignments"
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
